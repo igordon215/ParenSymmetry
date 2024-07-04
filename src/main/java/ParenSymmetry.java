@@ -1,18 +1,41 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ParenSymmetry {
 
 
     private Boolean isBalanced(String s) {
-        // implement this method
-        return null;
+        int balance = 0;
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if (c == '('){
+                balance++;
+            }else if (c == ')') {
+                balance--;
+                if (balance < 0 ){
+                    return false;
+                }
+            }
+        }
+        return balance == 0;
     }
 
-    private void checkFile(String filename) {
+    private void checkFile(String filename) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        String x;
+
+        while ((x = br.readLine()) != null) {
+            System.out.println(isBalanced(x));
+        }
+
+
         // open file named filename
 
         // for each line in the file
-            // read the line
-            // print whether or not the line's parenthesis are balanced
+        // read the line
+        // print whether or not the line's parenthesis are balanced
 
         // CLOSE the file
     }
@@ -37,6 +60,8 @@ public class ParenSymmetry {
         }
         printResult(trues, true);
 
+
+
     }
 
     private static void printResult(Boolean b0, boolean b) {
@@ -50,4 +75,9 @@ public class ParenSymmetry {
             System.out.println("Failure");
         }
     }
+
+
+
+
+
 }
